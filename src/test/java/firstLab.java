@@ -5,8 +5,6 @@ import org.testng.annotations.Test;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static io.restassured.RestAssured.authentication;
-import static io.restassured.RestAssured.given;
 
 public class firstLab {
 
@@ -23,7 +21,6 @@ public class firstLab {
         System.out.println("data მასივის სიგრძეა " +response.jsonPath().getList("data").size());
 
         //3.data მასივი ყველა email ველი
-//        System.out.println(response.jsonPath().get("data"));
         List<LinkedHashMap<String, String>>   dataArr = response.jsonPath().getList("data");
         for(int i=0; i<dataArr.size(); i++){
             System.out.println(dataArr.get(i).get("email"));
