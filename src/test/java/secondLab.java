@@ -1,6 +1,6 @@
 import DataController.DataControllerSMSModule;
-import Models.SMSModel.GetSMSRequestModel;
-import Models.SMSModel.GetSMSResponseModel;
+import Models.SMSModel.GetConsent.GetSMSRequestModel;
+import Models.SMSModel.GetConsent.GetSMSResponseModel;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;

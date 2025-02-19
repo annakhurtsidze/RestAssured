@@ -1,4 +1,5 @@
-package Models.SMSModel;
+package Models.SMSModel.GetConsent;
+
 
 public class GetSMSResponseModel {
     public Data data;
@@ -24,6 +25,8 @@ public class GetSMSResponseModel {
     public void setData(Data data) {
         this.data = data;
     }
+
+
 
     public Object getMessage() {
         return message;

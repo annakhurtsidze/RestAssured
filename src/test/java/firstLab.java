@@ -8,7 +8,7 @@ import java.util.List;
 
 public class firstLab {
 
-
+    
     @Test
     public void getListOfUsers(){
         Response response = RestAssured.get("https://reqres.in/api/users?page=2");
