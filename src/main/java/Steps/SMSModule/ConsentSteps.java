@@ -17,13 +17,6 @@ public class ConsentSteps {
         GetSMSResponseModel getSMSResponseModel = new GetSMSResponseModel();
         ConsentCalls consentCalls = new ConsentCalls();
         Response response = consentCalls.GetConsent(getSMSRequestModel);
-        int statusCode = response.getStatusCode();
-        if(statusCode == 200){
-            getSMSResponseModel = response.as(GetSMSResponseModel.class);
-            Assert.assertEquals(statusCode, 200);
-        }else {
-            Assert.assertNotEquals(statusCode, 200);
-        }
 
         return getSMSResponseModel;
     }
@@ -31,12 +24,7 @@ public class ConsentSteps {
     public void PostConsent(PostSMSRequestModel postSMSRequestModel){
         ConsentCalls consentCalls = new ConsentCalls();
         Response response = consentCalls.PostConsent(postSMSRequestModel);
-        int statusCode = response.getStatusCode();
-        if(statusCode == 200){
-            Assert.assertEquals(statusCode, 200);
-        }else {
-            Assert.assertNotEquals(statusCode, 200);
-        }
+
 
 
     }

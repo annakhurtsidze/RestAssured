@@ -69,13 +69,24 @@ public class DataControllerSMSModule {
             """;
 
     //ანუ ქვემოთ მოცემული მეთოდით გვინდა ბაზიდან ამოღებული ინფორმაციით შეავდგინოთ ლისტი
+	// ეს მეთოდი აკეთებს შემდეგს
+//	1. ამყარებს ბაზასთან კავშირს
+//	2. ასრულებს სქლ ქუერის
+//	3. იღებს მონაცემებს ქუერიდან
+//	4.მეპავს შედეგებს GetSMSRequestModel ობიეტების ლისტთან
+//	5. აბრუნებს GetSMSRequestModel ობიექტების ლისტს
     public static List<GetSMSRequestModel> getSMSRequestModels(String query) throws SQLException {
         //ბაზიდან დაბურნებულ მნიშვნელობებს ვინახავთ ამ ლისტში
         List<GetSMSRequestModel>  getSMSRequestModels = new ArrayList<>();
+	// dataBaseAccessSQL  არის Connection  ტიპის ობიექტი რომელიც გამოიყენება ბაზასთან დასაკავშირებლად
+	//DataBaseAccessSQL.getConnectionSMS(); არის მეთოდი რომელიც აბრუნებს ბაზასთან კავშირს.
         Connection dataBaseAccessSQL = DataBaseAccessSQL.getConnectionSMS();
         //resultset არის ბაზიდან დაბრუნებული ცხრილის ტიპის ობიექტი
         ResultSet resultSet;
+	//PreparedStatement  არის ობიექტი რომელიც გამოიყენება სქლ ქუერების შესასრულებლად. dataBaseAccessSQL.prepareStatement(query) ამზადებს სქლ ქუერის გასაშვებად
         PreparedStatement preparedStatement = dataBaseAccessSQL.prepareStatement(query);
+	// preparedStatement.executeQuery გაუშვებს სქლ ქუერის და დააბრუნებს ResultSet ტიპის ობიექტს, რომელიც შეიცავს მთლიან დატას რომელსაც აბრუნებს ქუერი,
+	//ResultSet  ობიექტი ინახაავს ბაზიდან დაბრუნებულ მონაცემებს სტრიქონებად და გვაძლევს იტერაციის საშუალებას
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()){
             GetSMSRequestModel getSMSRequestModel = new GetSMSRequestModel();
@@ -90,12 +101,13 @@ public class DataControllerSMSModule {
     }
 
 
+
+	//ბაზიდან წამოღებულ ინფორმაციას ვინახავთ ორგანზომილებიან მატრიცაში
+
     public static Object [] [] getSmsRequestModelObjects(List<GetSMSRequestModel> getSMSRequestModels) throws SQLException {
-        Object[][] reqData = new Object[getSMSRequestModels.size()][3];
+        Object[][] reqData = new Object[getSMSRequestModels.size()][1];
         for (int i = 0; i < getSMSRequestModels.size(); i++) {
-            reqData[i][0]= getSMSRequestModels.get(i).getTelNumber();
-            reqData[i][1]= getSMSRequestModels.get(i).getPersonId();
-            reqData[i][2]= getSMSRequestModels.get(i).getConsent();
+            reqData[i][0]= getSMSRequestModels.get(i);
         }
         return reqData;
     }
