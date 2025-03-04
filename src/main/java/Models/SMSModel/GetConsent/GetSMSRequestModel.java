@@ -1,4 +1,4 @@
-package Models.SMSModel;
+package Models.SMSModel.GetConsent;
 
 public class GetSMSRequestModel {
     public String TelNumber;
